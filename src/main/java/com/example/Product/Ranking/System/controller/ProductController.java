@@ -1,8 +1,9 @@
 package com.example.Product.Ranking.System.controller;
+
 import com.example.Product.Ranking.System.dto.ProductRequest;
 import com.example.Product.Ranking.System.dto.ProductResponse;
 import com.example.Product.Ranking.System.entity.Product;
-import com.example.Product.Ranking.System.service.ProductService;
+import com.example.Product.Ranking.System.service.ProductService; // ⭐ Changed to Interface
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,9 +12,9 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductService productService; // ⭐ Changed to Interface
 
-    // ⭐ Clean Constructor: Only inject what you actually use!
+    // ⭐ Injecting the Interface, not the concrete implementation!
     public ProductController(ProductService productService){
         this.productService = productService;
     }
@@ -40,8 +41,6 @@ public class ProductController {
 
     @GetMapping("/top-ranked")
     public List<ProductResponse> getTopProducts(){
-        // Now it correctly returns the top ranked based on your formula!
         return productService.getTopRankedProducts();
-
     }
 }

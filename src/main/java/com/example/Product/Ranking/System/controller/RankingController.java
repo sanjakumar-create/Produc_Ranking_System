@@ -2,7 +2,7 @@ package com.example.Product.Ranking.System.controller;
 
 import com.example.Product.Ranking.System.entity.ProductMetrics;
 import com.example.Product.Ranking.System.repository.ProductMetricsRepository;
-import com.example.Product.Ranking.System.service.RankingService;
+import com.example.Product.Ranking.System.service.RankingService; // ⭐ Changed to Interface
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/ranking")
 public class RankingController {
 
-    private final RankingService rankingService;
+    private final RankingService rankingService; // ⭐ Changed to Interface
     private final ProductMetricsRepository metricsRepository;
 
     public RankingController(RankingService rankingService,
@@ -22,14 +22,12 @@ public class RankingController {
 
     @PostMapping("/update")
     public String updateRanking(){
-
         rankingService.updateRankingScores();
         return "Ranking updated";
     }
 
     @GetMapping("/top-products")
     public List<ProductMetrics> getTopProducts(){
-
         return metricsRepository.findTop10ByOrderByRankingScoreDesc();
     }
 }

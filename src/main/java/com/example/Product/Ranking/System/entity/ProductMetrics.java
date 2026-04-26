@@ -90,4 +90,10 @@ public class ProductMetrics {
     public Product getProduct() {
         return product;
     }
+    // Add this to link the actual Product entity!
+
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }
